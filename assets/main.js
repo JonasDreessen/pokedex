@@ -20,19 +20,19 @@ function displayPokemon(response) {
     let cardMoves = document.querySelector(".card-moves");
 
     // get information out of api
-    let pokeName = "Hi I am " + response.data.name;
+    let pokeName = response.data.name;
     let pokeId = "ID " + response.data.id;
 
     let i;
     let pokeMoves = "";
     for (i = 0; i < 4; i++) {
-        pokeMoves += response.data.moves[i].move.name + "<br>";
+        pokeMoves += i + 1 +'. ' + response.data.moves[i].move.name + "<br>";
     }
-
+    console.log(i);
     // append api info to DOM
     cardTitle.innerHTML = pokeName;
     cardId.innerHTML = pokeId;
-    cardMoves.innerHTML = `I have some smooth moves like ${pokeMoves} what's your power?`;
+    cardMoves.innerHTML = `I have some smooth moves like: <br> ${pokeMoves} what's your power?`;
 
     createPokeImage(response);
 }

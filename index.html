@@ -15,21 +15,25 @@
 
 <body>
     <div class="search-container">
-        <input type="text" class="pokemon-search">
+        <input type="text" class="pokemon-search" placeholder="Search your pokemon">
         <button id="searchPokemon">CLICK ME!!!</button>
     </div>
     <div class="row">
         <div class="card-container">
             <div class="card-title"></div>
             <div class="card-picture"></div>
-            <div class="card-information">
-                <div class="card-id"></div>
-                <div class="card-moves"></div>
+            <div class="col-md-7 card-information-container">
+
+                <div class="card-information">
+                    <div class="card-id"></div>
+                    <div class="card-moves"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Optional JavaScript -->
+    <script src="./assets/main.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -41,7 +45,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./assets/main.js"></script>
+
 </body>
 
 </html>

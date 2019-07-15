@@ -1,3 +1,17 @@
+*{
+    font-family: Helvetica, sans-serif;
+    //font-size: 1.17em;
+}
+
+@media screen and (max-width: 765px) {
+    .card-container {
+      text-align: center;
+    }
+    .pokemon-picture{
+        margin-left: 175px;
+    }
+  }
+
 .search-container{
     width: 100%;
     text-align: center;
@@ -12,11 +26,13 @@
     margin-right: auto;
     margin-bottom: 10px;
     margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
 }
 
 .card-container{
     max-width: 500px;
-    max-height: 300px;
     min-height: 300px;
     height: 100%;
     width: 100%;
@@ -30,9 +46,21 @@
     background-color: #e83030;
     color: white;
     text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.card-id{
+    font-size: 1.17em;
+    font-weight: bold;
 }
 
 .pokemon-picture{
     height: 150px;
     float: left;
+}
+
+.card-information-container{
+    float: right;
 }
