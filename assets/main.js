@@ -21,7 +21,8 @@ function displayPokemon(response) {
 
     // get information out of api
     let pokeName = response.data.name;
-    let pokeId = "ID " + response.data.id;
+    let pokeId = response.data.id;
+    console.log(pokeId);
 
     let i;
     let pokeMoves = "";
@@ -31,7 +32,7 @@ function displayPokemon(response) {
     console.log(i);
     // append api info to DOM
     cardTitle.innerHTML = pokeName;
-    cardId.innerHTML = pokeId;
+    cardId.innerHTML = 'Pokedex No.   ' + pokeId;
     cardMoves.innerHTML = `I have some smooth moves like: <br> ${pokeMoves} what's your power?`;
 
     createPokeImage(response);
