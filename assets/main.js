@@ -14,21 +14,26 @@ function pokedex() {
 pokedex();
 
 function displayPokemon(response) {
-
-
-    // declare html elements 
+    // declare html elements
     let cardTitle = document.querySelector(".card-title");
-    let cardInformation = document.querySelector(".card-information");
-    let cardPic = document.querySelector(".card-picture");
+    let cardId = document.querySelector(".card-id");
+    let cardMoves = document.querySelector(".card-moves");
+
     // get information out of api
-    let pokeName = response.data.name;
-    let pokeWeight = response.data.weight;
+    let pokeName = "Hi I am " + response.data.name;
+    let pokeId = "ID " + response.data.id;
+
+    let i;
+    let pokeMoves = "";
+    for (i = 0; i < 4; i++) {
+        pokeMoves += response.data.moves[i].move.name + "<br>";
+    }
 
     // append api info to DOM
     cardTitle.innerHTML = pokeName;
-    cardInformation.innerHTML = `Weight: ${pokeWeight}`;
+    cardId.innerHTML = pokeId;
+    cardMoves.innerHTML = `I have some smooth moves like ${pokeMoves} what's your power?`;
 
-    // activate function to create Image
     createPokeImage(response);
 }
 
@@ -38,24 +43,25 @@ function createPokeImage(response) {
     let cardPic = document.querySelector(".card-picture");
     // get info out of api
     let pokePicURL = response.data.sprites.front_default;
-    // create image 
+    var createPokePic = document.createElement("img");
+
     if (searchCounter === 1) {
-
-        let createPokePic = document.createElement("img");
+        // give scr to image
         createPokePic.src = pokePicURL;
-        createPokePic.className = 'pokemon-picture'
+        // give className to img 
+        createPokePic.className = 'pokemon-picture';
+        // place img to dom
         cardPic.appendChild(createPokePic);
-    } else if (searchCounter > 1) {
 
+    } else if (searchCounter > 1) {
         let pokePicClass = document.querySelector('.pokemon-picture');
+        // delete previous searched img
         cardPic.removeChild(pokePicClass);
-        let createPokePic = document.createElement("img");
+        // add newly searched img url
         createPokePic.src = pokePicURL;
         createPokePic.className = 'pokemon-picture';
+        // place img to dom
         cardPic.appendChild(createPokePic);
 
     }
-
-
-
 }
