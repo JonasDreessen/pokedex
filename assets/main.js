@@ -1,5 +1,6 @@
 const searchPokemon = document.getElementById("searchPokemon");
 var searchCounter = 0;
+var testAPI;
 
 function pokedex() {
     searchPokemon.addEventListener('click', async function () {
