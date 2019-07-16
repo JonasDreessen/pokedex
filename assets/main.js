@@ -1,69 +1,80 @@
 const searchPokemon = document.getElementById("searchPokemon");
-var searchCounter = 0;
+const back = document.getElementById("back");
+const next = document.getElementById("next");
 var testAPI;
+const inputPokemon = document.querySelector(".pokemon-search");
+searchPokemon.addEventListener("click", function() {
+let input = document.querySelector(".pokemon-search").value;
+getData(input);
+});
 
-function pokedex() {
-    searchPokemon.addEventListener('click', async function () {
-        searchCounter++;
-        let input = document.querySelector('.pokemon-search').value;
-        let api = `https://pokeapi.co/api/v2/pokemon/${input}/`;
-        let response = await axios.get(api);
+inputPokemon.addEventListener("keydown", function (e) {
+    console.log("hi");
+    if (e.keyCode === 13) {  let input = document.querySelector(".pokemon-search").value;
+    getData(input);
+    }
+});
 
-        displayPokemon(response);
-    })
+async function getData(pokemonId) {
+let api = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
+let response = await axios.get(api);
+displayPokemon(response);
 }
-pokedex();
+
+back.addEventListener("click", async function() {
+var currentInput = --document.querySelector(".pokemon-search").value;
+getData(currentInput);
+});
+
+next.addEventListener("click", async function() {
+var currentInput = ++document.querySelector(".pokemon-search").value;
+getData(currentInput);
+});
 
 function displayPokemon(response) {
-    // declare html elements
-    let cardTitle = document.querySelector(".card-title");
-    let cardId = document.querySelector(".card-id");
-    let cardMoves = document.querySelector(".card-moves");
+// declare html elements
+let cardTitle = document.querySelector(".card-title");
+let cardId = document.querySelector(".card-id");
+let cardMoves = document.querySelector(".card-moves");
 
-    // get information out of api
-    let pokeName = response.data.name;
-    let pokeId = response.data.id;
-    console.log(pokeId);
+// get information out of api
+let pokeName = response.data.name;
+let pokeId = response.data.id;
 
-    let i;
-    let pokeMoves = "";
-    for (i = 0; i < 4; i++) {
-        pokeMoves += i + 1 +'. ' + response.data.moves[i].move.name + "<br>";
-    }
-    console.log(i);
-    // append api info to DOM
-    cardTitle.innerHTML = pokeName;
-    cardId.innerHTML = 'Pokedex No.   ' + pokeId;
-    cardMoves.innerHTML = `<br> ${pokeMoves}`;
-
-    createPokeImage(response);
+let i;
+let pokeMoves = "";
+for (i = 0; i < 4; i++) {
+pokeMoves += i + 1 + ". " + response.data.moves[i].move.name + "<br>";
 }
 
-function createPokeImage(response) {
+// append api info to DOM
+cardTitle.innerHTML = pokeName;
+cardId.innerHTML = "Pokedex No. " + pokeId;
+cardMoves.innerHTML = `<br> ${pokeMoves}`;
 
-    // declare html element
-    let cardPic = document.querySelector(".card-picture");
-    // get info out of api
-    let pokePicURL = response.data.sprites.front_default;
-    var createPokePic = document.createElement("img");
+displayPokeImage(response);
+}
 
-    if (searchCounter === 1) {
-        // give scr to image
-        createPokePic.src = pokePicURL;
-        // give className to img 
-        createPokePic.className = 'pokemon-picture';
-        // place img to dom
-        cardPic.appendChild(createPokePic);
+function displayPokeImage(response) {
+if (document.querySelector(".pokemon-picture")) {
+removeSearchedImage();
+createSearchedImage(response);
+} else {
+createSearchedImage(response);
+}
+}
 
-    } else if (searchCounter > 1) {
-        let pokePicClass = document.querySelector('.pokemon-picture');
-        // delete previous searched img
-        cardPic.removeChild(pokePicClass);
-        // add newly searched img url
-        createPokePic.src = pokePicURL;
-        createPokePic.className = 'pokemon-picture';
-        // place img to dom
-        cardPic.appendChild(createPokePic);
+function removeSearchedImage() {
+let cardPic = document.querySelector(".card-picture");
+let pokePicClass = document.querySelector(".pokemon-picture");
+cardPic.removeChild(pokePicClass);
+}
 
-    }
+function createSearchedImage(response) {
+let cardPic = document.querySelector(".card-picture");
+let createPokePic = document.createElement("img");
+let pokePicURL = response.data.sprites.front_default;
+createPokePic.src = pokePicURL;
+createPokePic.className = "pokemon-picture";
+cardPic.appendChild(createPokePic);
 }
