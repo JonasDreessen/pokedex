@@ -9,11 +9,13 @@ getData(input);
 });
 
 inputPokemon.addEventListener("keydown", function (e) {
-    console.log("hi");
     if (e.keyCode === 13) {  let input = document.querySelector(".pokemon-search").value;
     getData(input);
     }
 });
+
+
+
 
 async function getData(pokemonId) {
 let api = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
