@@ -34,7 +34,7 @@ function displayPokemon(response) {
     // append api info to DOM
     cardTitle.innerHTML = pokeName;
     cardId.innerHTML = 'Pokedex No.   ' + pokeId;
-    cardMoves.innerHTML = `I have some smooth moves like: <br> ${pokeMoves} what's your power?`;
+    cardMoves.innerHTML = `<br> ${pokeMoves}`;
 
     createPokeImage(response);
 }
